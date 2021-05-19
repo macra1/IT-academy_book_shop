@@ -15,7 +15,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from airport import views as views_air
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('airports/', views_air.airport_main),
+    path('airports/<str:id_airport>', views_air.what_id),
+    path('', views_air.main_wd)
 ]
