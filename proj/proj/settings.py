@@ -28,7 +28,7 @@ SECRET_KEY = 'django-insecure-d320_i9s%*n!*iv)=cymlog@8dx!m7$bv#0ruvoe2c7)a_d&7v
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["http://macra1.pythonanywhere.com",
+ALLOWED_HOSTS = ["macra1.pythonanywhere.com",
                  '127.0.0.1']
 
 
