@@ -1,7 +1,10 @@
+import os
+
 
 # Читает файл и ищет совпадение с заданным code(кодом аэропорта)
 # Возвращает Город и Страну
-def read_and_filter(code, filename="sup.txt"):
+def read_and_filter(code, filename=os.path.dirname(__file__)+"/sup.txt"):
+    print(os.path.dirname(__file__))
     code = code.upper()
     with open(filename, encoding="utf-8") as file:
         for i in file:
