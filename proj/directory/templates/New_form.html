@@ -1,0 +1,27 @@
+{% extends "Base.html" %}
+
+{% block content %}
+    <h1>Блок контента</h1>
+    <h2>{{ books }}</h2>
+    {% if books %}
+        {% for elem in books%}
+            <div class="alert alert-warning">
+                <h3>name {{ elem.name }}</h3>
+                <h4>description {{ elem.description }}</h4>
+                <h4>price {{ elem.price }}</h4>
+                <h4>valuta {{ elem.valuta }}</h4>
+                <h4>author {{ elem.author }}</h4>
+                <h4>genre {{ elem.genre }}</h4>
+                <h4>publisher {{ elem.publisher }}</h4>
+                <h5>{{ elem.genre.all }}</h5>
+                {% for genr in elem.genre.all %}
+                    <h4>{{ genr }}</h4>
+                {% endfor %}
+                <h4>date {{ elem.date }}</h4>
+            </div>
+        {% endfor %}
+    {% else %}
+        <p>Тут ничего нет ... как ты сюда попал?!!</p>
+    {% endif %}
+    <a href="{% url 'homepage' %}">bla bla</a>
+{% endblock %}

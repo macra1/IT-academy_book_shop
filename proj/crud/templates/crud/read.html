@@ -1,0 +1,24 @@
+{% extends "Base.html" %}
+
+{% block title %}Просмотр{% endblock %}
+
+{% block content %}
+    <div>
+        <h1>просмотр</h1>
+        {% for elem in books %}
+            <a href="{{ elem.pk }}">{{ elem }}</a><p>
+        {% endfor %}
+        {% for elem in Author %}
+            <a href="{{ elem.pk }}">Имя: {{ elem.name }}</a>
+            <a>Подробнее: {{ elem.description }}</a><p>
+        {% endfor %}
+        {% for elem in Genre %}
+            <a href="{{ elem.pk }}">Имя: {{ elem.name }}</a>
+            <a>Подробнее: {{ elem.description }}</a><p>
+        {% endfor %}
+        {% for elem in Publisher %}
+            <a href="{{ elem.pk }}">Имя: {{ elem.name }}</a>
+            <a>Подробнее: {{ elem.description }}</a><p>
+        {% endfor %}
+    </div>
+{% endblock %}

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title>
+</head>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<body>
+    <lu><a href="{% url 'homepage' %}"> Домашняя страница   </a></lu>
+    <lu><a href="{% url 'univread' 'book' %}"> books   </a></lu>
+    <lu><a href="{% url 'test' %}"> test   </a></lu>
+    <lu><a href="{% url 'test2' %}"> test2   </a></lu>
+    <h1>Это базовый кусок</h1>
+    <h2>Воистину базовый кусок</h2>
+    <div style="background-color: blue">1223</div>
+    {% block content %}
+    <h3>somebody</h3>
+    <a href="{% url 'univread' 'genre' %}">genre</a>
+    {% endblock %}
+</body>
+</html>
