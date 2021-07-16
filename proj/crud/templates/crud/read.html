@@ -61,7 +61,16 @@
         {% endif %}
         {% for elem in Genre %}
             <a href="{{ elem.pk }}">Имя: {{ elem.name }}</a>
-            <a>Подробнее: {{ elem.description }}</a><p>
+            <a>Подробнее: {{ elem.description }}</a>
+            {% if perms.directory.update_genre %}
+                <a href="{% url 'genre_update' elem.pk %}"> Update </a>
+            {% endif %}
+            </td>
+            <td>
+            {% if perms.directory.delete_genre %}
+                <a href="{% url 'genre_delete' elem.pk %}">Delete</a>
+            {% endif %}
+        <p>
         {% endfor %}
 
         {% if Publisher %}
@@ -70,7 +79,16 @@
         {% endif %}
         {% for elem in Publisher %}
             <a href="{{ elem.pk }}">Имя: {{ elem.name }}</a>
-            <a>Подробнее: {{ elem.description }}</a><p>
+            <a>Подробнее: {{ elem.description }}</a>
+            {% if perms.directory.update_publisher %}
+                <a href="{% url 'publisher_update' elem.pk %}"> Update </a>
+            {% endif %}
+            </td>
+            <td>
+            {% if perms.directory.delete_publisher %}
+                <a href="{% url 'publisher_delete' elem.pk %}">Delete</a>
+            {% endif %}
+        <p>
         {% endfor %}
     </div>
 {% endblock %}
