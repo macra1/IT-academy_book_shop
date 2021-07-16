@@ -26,7 +26,7 @@
                         <input type="number" name="quantityforgood_{{good_in_cart.pk}}" min="1" step="1" class="form-control" value="{{good_in_cart.quantity}}">
                     </div>
                 </td>
-                <td>{{ good_in_cart.price }}</td>
+                <td>{{ good_in_cart.total_price }}</td>
                 <td><form action="{% url 'delete-good-in-cart' good_in_cart.pk %}" method="post">{% csrf_token %}<button type="submit" class="btn btn-sm btn-danger">Delete</button></form></td>
             </tr>
             {% endfor %}

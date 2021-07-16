@@ -17,10 +17,14 @@
             </li>
             <li>Дата добавления: {{ book1.date }}</li>
             <li>{{ book1.publisher }}</li>
+        <a href="{% url 'cart-edit'%}?book_id={{ book1.pk }}">
+            <button type="submit" name="submit" class="btn btn-warning">Add to cart</button>
+        </a>
         {% endfor %}
         {% for elem in Author %}
             <li>Имя: {{ elem.name }}</li>
-            <li>Подробнее: {{ elem.description }}</li><p>
+            <li>Подробнее: {{ elem.description }}</li>
+            <p>
         {% endfor %}
         {% for elem1 in Genre %}
             <li>Имя: {{ elem1.name }}</li>

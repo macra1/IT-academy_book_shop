@@ -17,10 +17,10 @@ class Cart(models.Model):
     @property
     def total_price_cart(self):
         goods = self.goods.all()
-        total_price = 0
+        total_price_cart = 0
         for good in goods:
-            total_price += good.price
-        return total_price
+            total_price_cart += good.total_price
+        return total_price_cart
 
 
 class BooksInCart(models.Model):
