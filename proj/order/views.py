@@ -13,30 +13,26 @@ class CreateOrderView(FormView):
     success_url = reverse_lazy("success")
 
     def form_valid(self, form):
-        print("1")
         cart_id = self.request.session.get('cart_id')
-        print("1.1")
         cart, created = carts_models.Cart.objects.get_or_create(
             pk=cart_id,
             defaults={},
         )
-        print("2")
         if created:
-            print("3")
             return HttpResponseRedirect(reverse_lazy('cart-edit'))
         ci = form.cleaned_data.get('contact_info')
         st = models.Status.objects.get(pk=1)
-        print(f"4: {ci} {st}")
-        print(cart)
-        print(type(cart))
         order = models.Order.objects.update_or_create(
             cart=cart,
             contact_info=ci,
             status=st,
         )
-        print("5")
         self.request.session.delete('cart_id')
-        print(f"6")
+        if self.request.user.is_authenticated:
+            cart_id = self.request.session.get('cart_id')
+            customer1 = carts_models.Cart.objects.get(pk=cart_id)
+            customer1.customer = self.request.user
+            customer1.save()
         return super().form_valid(form)
 
     def get_context_data(self, **kwargs):
