@@ -1,0 +1,43 @@
+{% extends "Base.html" %}
+
+{% block title %}Корзина{% endblock %}
+
+{% block content %}
+    <div>
+        <h1>Корзина</h1>
+        <form action="{% url 'cart-update' %}" method="post">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Good</th>
+                    <th scope="col">Quantity</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">-</th>
+                </tr>
+            </thead>
+            
+            {% for good_in_cart in object.goods.all %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>Name: {{ good_in_cart.book.name }}</td>
+                <td>
+                    <div class="mb-2">
+                        <input type="number" name="quantityforgood_{{good_in_cart.pk}}" min="1" step="1" class="form-control" value="{{good_in_cart.quantity}}">
+                    </div>
+                </td>
+                <td>{{ good_in_cart.price }}</td>
+                <td><form action="{% url 'delete-good-in-cart' good_in_cart.pk %}" method="post">{% csrf_token %}<button type="submit" class="btn btn-sm btn-danger">Delete</button></form></td>
+            </tr>
+            {% endfor %}
+            <tr>
+                <td colspan="3">Total</td>
+                <td>{{ object.total_price_cart }}</td>
+                <td></td>
+            </tr>
+        </table>
+            <button type="submit" name="submit" class="btn btn-warning" value="save_cart">Save cart</button>
+            <button type="submit" name="submit" class="btn btn-success" value="create_order">Order it</button>
+        </form>
+    </div>
+{% endblock %}

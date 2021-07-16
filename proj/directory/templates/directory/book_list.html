@@ -1,0 +1,14 @@
+{% extends "Base.html" %}
+
+{% block title %}Просмотр{% endblock %}
+
+{% block content %}
+    <div>
+        <h1>просмотр</h1>
+        {% for elem in objects_list %}
+            <a href="{{ elem.pk }}">{{ elem }}</a>
+        <a href="{% url 'book_update' elem.pk %}"> Update </a>
+        <a href="{% url 'book_delete' elem.pk %}"> Delete</a><p>
+        {% endfor %}
+    </div>
+{% endblock %}

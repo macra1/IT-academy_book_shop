@@ -14,17 +14,6 @@ class Author(models.Model):
         verbose_name_plural = "Авторы"
 
 
-class Valuta(models.Model):
-    name = models.CharField(max_length=10)
-
-    def __str__(self):
-        return self.name
-
-    class Meta:
-        verbose_name = "Вид валюты"
-        verbose_name_plural = "Виды валют"
-
-
 class Genre(models.Model):
     name = models.CharField(verbose_name="Имя жанра", max_length=50)
     description = models.TextField()
@@ -53,7 +42,6 @@ class Book(models.Model):
     name = models.CharField(verbose_name="Название книги", max_length=100)
     description = models.TextField()
     price = models.IntegerField(null=True, blank=True)
-    valuta = models.ForeignKey(Valuta, on_delete=models.PROTECT, null=True, blank=True)
     author = models.ForeignKey(Author, on_delete=models.CASCADE, null=True, blank=True)
     genre = models.ManyToManyField(Genre, verbose_name="Жанры", blank=True)
     publisher = models.ForeignKey(Publisher, on_delete=models.CASCADE, null=True, blank=True)

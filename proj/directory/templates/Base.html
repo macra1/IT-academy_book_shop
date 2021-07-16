@@ -2,16 +2,21 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8" crossorigin="anonymous"></script>
 </head>
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <body>
     <lu><a href="{% url 'homepage' %}"> Домашняя страница   </a></lu>
     <lu><a href="{% url 'univread' 'book' %}"> books   </a></lu>
     <lu><a href="{% url 'test' %}"> test   </a></lu>
     <lu><a href="{% url 'test2' %}"> test2   </a></lu>
+    <lu><a href="{% url 'login' %}"> Login   </a></lu>
     <h1>Это базовый кусок</h1>
     <h2>Воистину базовый кусок</h2>
+    <h3>вы : {{ user }}; {{ perms.directory.add_book }}</h3>
+    <h3>{% if perms.directory.add_book %}ДА!!!!!!{% endif %}</h3>
     <div style="background-color: blue">1223</div>
     {% block content %}
     <h3>somebody</h3>

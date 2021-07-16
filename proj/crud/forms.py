@@ -19,12 +19,23 @@ class BookForm(ModelForm):
         }
 
 
-# name = mode
+class CreateBookForm(ModelForm):
+    class Meta:
+        model = Book
+        fields = ['name', 'description']
+
+        widgets = {
+            "name": TextInput(attrs={'placeholder': 'Название Книги'}),
+            "description": Textarea(attrs={'placeholder': 'Описание Книги'}),
+        }
+
+
+# name
 # description
-# price = mod
-# valuta = mo
-# author = mo
-# genre = mod
-# publisher =
-# date = mode
-# img = model
+# price
+# valuta
+# author
+# genre
+# publisher
+# date
+# img

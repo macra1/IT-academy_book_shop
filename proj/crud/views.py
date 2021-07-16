@@ -1,6 +1,10 @@
-from django.shortcuts import render, redirect, HttpResponse
-from .forms import BookForm
+from django.shortcuts import render, redirect, HttpResponse, HttpResponseRedirect
+# from .forms import BookForm
+# from .forms import CreateBookForm
+from . import forms
 from directory import models
+from django.urls import reverse
+from django.views.generic import ListView
 
 # Create your views here.
 
@@ -76,3 +80,48 @@ def univread_detail(request, modeltype, page=1):
                                                     "Author": author,
                                                     "Genre": genre,
                                                     "Publisher": publisher})
+
+
+def book_create(request):
+    print('book_create')
+    if request.method == "POST":
+        form = forms.CreateBookForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect(reverse('books'))
+        else:
+            return HttpResponse("Неверная форма")
+    else:
+        form = forms.CreateBookForm()
+    ctx = {'form': form}
+    return render(request, 'crud/create.html', context=ctx)
+
+
+def book_update(request, book_id):
+    print('book_update')
+    if request.method == "POST":
+        obj = models.Book.objects.get(pk=book_id)
+        form = forms.CreateBookForm(request.POST, instance=obj)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect(reverse('books'))
+        else:
+            return HttpResponse("Неверная форма")
+    else:
+        obj = models.Book.objects.get(pk=book_id)
+        form = forms.CreateBookForm(instance=obj)
+    ctx = {'form': form}
+    return render(request, 'crud/create.html', context=ctx)
+
+
+def book_delete(request, book_id):
+    if request.method == "POST":
+        print("book_delete and metod POST")
+        obj = models.Book.objects.get(pk=book_id).delete()
+        return HttpResponseRedirect(reverse('books'))
+    return render(request, 'crud/book_delete.html')
+
+
+class BookListView(ListView):
+    model = models.Book
+    print(model)
