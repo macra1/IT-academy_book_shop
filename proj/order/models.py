@@ -1,10 +1,7 @@
 from django.db import models
 from carts import models as carts_views
-# from directory import views as dir_views
 
 # Create your models here.
-
-DEFFAULT_ID = 0
 
 
 class Status(models.Model):
@@ -42,3 +39,18 @@ class Order(models.Model):
     class Meta:
         verbose_name = "Заказ"
         verbose_name_plural = "Заказы"
+
+
+class Test(models.Model):
+    cart = models.CharField(max_length=150)
+    contact_info = models.TextField(verbose_name="Contact info")
+    created = models.DateTimeField(
+        verbose_name="Created",
+        auto_now=False,
+        auto_now_add=True
+    )
+    updated = models.DateTimeField(
+        verbose_name="Updated",
+        auto_now=True,
+        auto_now_add=False
+    )

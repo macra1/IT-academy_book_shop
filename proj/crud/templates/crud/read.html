@@ -23,7 +23,7 @@
                 <tr>
                     <td><a href="{{ elem.pk }}">{{ elem }}</a></td>
                     <td>
-                    {% if perms.directory.update_book %}
+                    {% if perms.directory.change_book %}
                         <a href="{% url 'book_update' elem.pk %}"> Update </a>
                     {% endif %}
                     </td>
