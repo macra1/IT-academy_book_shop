@@ -5,23 +5,30 @@
 {% block content %}
     <div>
         <h1>Более подробно:</h1>
-        {% for book in books %}
-            <li>Название: {{ book.name }}</li>
-            <li>Описание: {{ book.description }}</li>
-            <li>Цена: {{ book.price }}</li>
-            <li>Дата добавления: {{ book.date }}</li>
+        {% for book1 in books %}
+            <li>Название: {{ book1.name }}</li>
+            <li>Описание: {{ book1.description }}</li>
+            <li>Цена: {{ book1.price }}</li>
+            <li>Автор: {{ book1.author }}</li>
+            <li>Жанры:
+                {% for elem in book1.genre.all %}
+                    {{ elem }}
+                {% endfor %}
+            </li>
+            <li>Дата добавления: {{ book1.date }}</li>
+            <li>{{ book1.publisher }}</li>
         {% endfor %}
         {% for elem in Author %}
-            <lu>Имя: {{ elem.name }}</lu>
-            <lu>Подробнее: {{ elem.description }}</lu><p>
+            <li>Имя: {{ elem.name }}</li>
+            <li>Подробнее: {{ elem.description }}</li><p>
         {% endfor %}
-        {% for elem in Genre %}
-            <lu>Имя: {{ elem.name }}</lu>
-            <lu>Подробнее: {{ elem.description }}</lu><p>
+        {% for elem1 in Genre %}
+            <li>Имя: {{ elem1.name }}</li>
+            <li>Подробнее: {{ elem1.description }}</li><p>
         {% endfor %}
         {% for elem in Publisher %}
-            <lu>Имя: {{ elem.name }}</lu>
-            <lu>Подробнее: {{ elem.description }}</lu><p>
+            <li>Имя: {{ elem.name }}</li>
+            <li>Подробнее: {{ elem.description }}</li><p>
         {% endfor %}
     </div>
 {% endblock %}

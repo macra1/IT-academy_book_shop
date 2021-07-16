@@ -1,10 +1,10 @@
 {% extends "Base.html" %}
 
-{% block title %}Удаление книги{% endblock %}
+{% block title %}Подтверждение удаления{% endblock %}
 
 {% block content %}
     <div>
-        <h1>Удалить книжку?</h1>
+        <h1>Точно удалить?</h1>
         <form action="" method="post">
         {% csrf_token %}
         <button type="submit">Submit</button>

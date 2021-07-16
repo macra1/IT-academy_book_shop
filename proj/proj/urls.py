@@ -16,8 +16,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from directory import views
-from django.contrib.auth import views as auth_views
-
+from django.conf.urls.static import static
+from django.conf import settings
 
 urlpatterns = [
     path('', views.main, name="homepage"),
@@ -25,11 +25,10 @@ urlpatterns = [
     path('books/', views.show_books, name="books"),
     path('test/', views.test, name="test"),
     path('test2/', views.test2, name="test2"),
-    # path('books/<bok>', views.bok),
     path('user/', include('users.urls')),
     path('detail/', include('crud.urls')),
     path('users/', include('django.contrib.auth.urls')),
     path('carts/', include('carts.urls'), name='carts'),
     path('order/', include('order.urls')),
     path('users/', include('users.urls')),
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

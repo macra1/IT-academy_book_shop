@@ -4,9 +4,11 @@
 
 {% block content %}
     <div>
-        <h1>просмотр книг</h1>
-        <a href="{% url 'book_create' %}">Добавление новой книги</a>
-        <a href="">(Добавить может любой пользователь)</a>
+        {% if books %}
+            <h1>просмотр книг</h1>
+            <a href="{% url 'book_create' %}">Добавление новой книги</a>
+            <a href="">(Добавить может любой пользователь)</a>
+        {% endif %}
         {% for elem in books %}
             <table class="table">
             <thead>
@@ -33,20 +35,39 @@
                     <td><a href="{% url 'cart-edit'%}?book_id={{ elem.pk }}"> Add to cart </a><p></td>
                 </tr>
             </table>
-    <!--            {{ perms.directory.add_book }}-->
-    <!--            {% if perms.directory.add_book %}-->
-    <!--                <h1>perms is active</h1>-->
-    <!--            {% endif %}-->
-
         {% endfor %}
+
+        {% if Author %}
+            <h1>Просмотр Авторов</h1>
+            <a href="{% url 'author_create' %}">Добавить автора</a><p>
+        {% endif %}
         {% for elem in Author %}
             <a href="{{ elem.pk }}">Имя: {{ elem.name }}</a>
-            <a>Подробнее: {{ elem.description }}</a><p>
+            <a>Подробнее: {{ elem.description }}</a>
+            {% if perms.directory.update_author %}
+                <a href="{% url 'author_update' elem.pk %}"> Update </a>
+            {% endif %}
+            </td>
+            <td>
+            {% if perms.directory.delete_author %}
+                <a href="{% url 'author_delete' elem.pk %}">Delete</a>
+            {% endif %}
+            <p>
         {% endfor %}
+
+        {% if Genre %}
+            <h1>Просмотр Жанров</h1>
+            <a href="{% url 'genre_create' %}">Добавить Жанр</a><p>
+        {% endif %}
         {% for elem in Genre %}
             <a href="{{ elem.pk }}">Имя: {{ elem.name }}</a>
             <a>Подробнее: {{ elem.description }}</a><p>
         {% endfor %}
+
+        {% if Publisher %}
+            <h1>Просмотр издательств</h1>
+            <a href="{% url 'publisher_create' %}">Добавить издательство</a><p>
+        {% endif %}
         {% for elem in Publisher %}
             <a href="{{ elem.pk }}">Имя: {{ elem.name }}</a>
             <a>Подробнее: {{ elem.description }}</a><p>

@@ -9,22 +9,20 @@
 </head>
 <body>
     <lu><a href="{% url 'homepage' %}"> Домашняя страница   </a></lu>
-    <lu><a href="{% url 'univread' 'book' %}"> books   </a></lu>
     <lu><a href="{% url 'cart-edit' %}"> Список Покупок </a></lu>
     {% if user.is_authenticated %}
-    <lu><a href="{% url 'logout' %}"> LogOut </a></lu>
+    <lu><a href="{% url 'logout' %}?next=/"> LogOut </a></lu>
     {% else %}
     <lu><a href="{% url 'login' %}"> Log in </a></lu>
     <lu><a href="{% url 'register' %}"> Register </a></lu>
     {% endif %}
     <h1>Это базовый кусок</h1>
     <h2>Воистину базовый кусок</h2>
-    <h3>вы : {{ user }}; {{ perms.directory.add_book }}</h3>
-    <h3>{% if perms.directory.add_book %}ДА!!!!!!{% endif %}</h3>
-    <div style="background-color: ">1223</div>
+    <h3>вы : {{ user }};</h3>
+    <h3>{% if perms.directory.delete_book %}Есть возможность удалять книги!{% endif %}</h3>
+    <div style="background-color: green">Тут заканчивается базовый шаблон</div>
     {% block content %}
-    <h3>somebody</h3>
-    <a href="{% url 'univread' 'genre' %}">genre</a>
+    <h3>Как ты сюда попал?!!!</h3>
     {% endblock %}
 </body>
 </html>
