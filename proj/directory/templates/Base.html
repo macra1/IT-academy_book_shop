@@ -10,14 +10,18 @@
 <body>
     <lu><a href="{% url 'homepage' %}"> Домашняя страница   </a></lu>
     <lu><a href="{% url 'univread' 'book' %}"> books   </a></lu>
-    <lu><a href="{% url 'test' %}"> test   </a></lu>
-    <lu><a href="{% url 'test2' %}"> test2   </a></lu>
-    <lu><a href="{% url 'login' %}"> Login   </a></lu>
+    <lu><a href="{% url 'cart-edit' %}"> Список Покупок </a></lu>
+    {% if user.is_authenticated %}
+    <lu><a href="{% url 'logout' %}"> LogOut </a></lu>
+    {% else %}
+    <lu><a href="{% url 'login' %}"> Log in </a></lu>
+    <lu><a href="{% url 'register' %}"> Register </a></lu>
+    {% endif %}
     <h1>Это базовый кусок</h1>
     <h2>Воистину базовый кусок</h2>
     <h3>вы : {{ user }}; {{ perms.directory.add_book }}</h3>
     <h3>{% if perms.directory.add_book %}ДА!!!!!!{% endif %}</h3>
-    <div style="background-color: blue">1223</div>
+    <div style="background-color: ">1223</div>
     {% block content %}
     <h3>somebody</h3>
     <a href="{% url 'univread' 'genre' %}">genre</a>

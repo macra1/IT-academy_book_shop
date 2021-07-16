@@ -27,7 +27,7 @@ def bok(request, bok):
 
 
 def main(request):
-    return render(request, "directory/main.html")
+    return render(request, "directory/Main.html")
 
 
 def show_books(request):

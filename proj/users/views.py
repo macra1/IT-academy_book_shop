@@ -3,7 +3,8 @@ from django.http import HttpResponse
 from django.views.generic import FormView
 from . import forms, models
 # Create your views here.
-from django.contrib.auth import get_user_model
+from django.contrib.auth import get_user_model, authenticate, login
+
 
 User = get_user_model()
 
@@ -29,4 +30,9 @@ class RegisterView(FormView):
         user = User.objects.create_user(username=username,
                                         password=password)
         profile = models.Profile.objects.create(user=user, tel=tel)
+        user_lg = authenticate(request=self.request,
+                               username=username,
+                               password=password)
+        if user is not None:
+            login(request=self.request, user=user_lg)
         return super().form_valid(form)

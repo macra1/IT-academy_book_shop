@@ -3,10 +3,16 @@
 {% block title %}Главная страница{% endblock %}
 
 {% block content %}
-    <h1>Главная страница</h1>
-    <h2> какой-то текст и {{ user }} </h2>
-    <a href="detail/book">Books</a>
-    <a href="detail/author">Author</a>
-    <a href="detail/genre">Genre</a>
-    <a href="detail/publisher">Publisher</a>
+    <h1>Главная страница 321</h1>
+    {% if user.is_authenticated %}
+        <lu><a href="{% url 'logout' %}"> Приветствуем на сайте {{ user }} </a></lu>
+    {% else %}
+        <lu>Приветствуем незарегистрированного пользователя ;)</lu>
+        <lu>Регистрация находиться в шапке сайта , посмотри выше</lu>
+    {% endif %}
+    <h2> Вы зашли {{ user }} </h2>
+    <h2><a href="detail/book">Книги</a></h2>
+    <h2><a href="detail/author">Авторы</a></h2>
+    <h2><a href="detail/genre">Жанры</a></h2>
+    <h2><a href="detail/publisher">Издательства</a></h2>
 {% endblock %}

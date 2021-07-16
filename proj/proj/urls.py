@@ -21,7 +21,6 @@ from django.contrib.auth import views as auth_views
 
 urlpatterns = [
     path('', views.main, name="homepage"),
-    path('homepage/', views.main, name="homepage"),
     path('admin/', admin.site.urls),
     path('books/', views.show_books, name="books"),
     path('test/', views.test, name="test"),
@@ -32,5 +31,5 @@ urlpatterns = [
     path('users/', include('django.contrib.auth.urls')),
     path('carts/', include('carts.urls'), name='carts'),
     path('order/', include('order.urls')),
-    path('users/', include('users.urls'))
+    path('users/', include('users.urls')),
 ]

@@ -4,17 +4,40 @@
 
 {% block content %}
     <div>
-        <h1>просмотр</h1>
+        <h1>просмотр книг</h1>
+        <a href="{% url 'book_create' %}">Добавление новой книги</a>
+        <a href="">(Добавить может любой пользователь)</a>
         {% for elem in books %}
-            <a href="{{ elem.pk }}">{{ elem }}</a>
-            {{ perm.directory.add_Book }}
-            {{ perms.directory.add_book }}
-<!--            {% if perms.directory.add_book %}-->
-<!--                <h1>perms is active</h1>-->
-<!--            {% endif %}-->
-            <a href="{% url 'book_update' elem.pk %}"> Update </a>
-            <a href="{% url 'book_delete' elem.pk %}">Delete</a>
-            <a href="{% url 'cart-edit'%}?book_id={{ elem.pk }}"> Add to cart </a><p>
+            <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Название книги:</th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+
+                <tr>
+                    <td><a href="{{ elem.pk }}">{{ elem }}</a></td>
+                    <td>
+                    {% if perms.directory.update_book %}
+                        <a href="{% url 'book_update' elem.pk %}"> Update </a>
+                    {% endif %}
+                    </td>
+                    <td>
+                    {% if perms.directory.delete_book %}
+                        <a href="{% url 'book_delete' elem.pk %}">Delete</a>
+                    {% endif %}
+                    </td>
+                    <td><a href="{% url 'cart-edit'%}?book_id={{ elem.pk }}"> Add to cart </a><p></td>
+                </tr>
+            </table>
+    <!--            {{ perms.directory.add_book }}-->
+    <!--            {% if perms.directory.add_book %}-->
+    <!--                <h1>perms is active</h1>-->
+    <!--            {% endif %}-->
+
         {% endfor %}
         {% for elem in Author %}
             <a href="{{ elem.pk }}">Имя: {{ elem.name }}</a>
